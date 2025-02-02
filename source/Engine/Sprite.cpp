@@ -35,14 +35,13 @@ void Sprite::render() {
         static_cast<int>(height * scale.y) 
     };
 
-    std::cout << "Rendering sprite at (" << x << "," << y << ") with size " 
-              << (width * scale.x) << "x" << (height * scale.y) << std::endl;
+    //std::cout << "Rendering sprite at (" << x << "," << y << ") with size " << (width * scale.x) << "x" << (height * scale.y) << std::endl;
               
     SDL_RenderCopy(renderer, texture, &srcRect, &dstRect);
 }
 
 void Sprite::loadTexture(const std::string& imagePath) {
-    std::cout << "Attempting to load texture: " << imagePath << std::endl;
+    //std::cout << "Attempting to load texture: " << imagePath << std::endl;
     
     if (texture) {
         SDL_DestroyTexture(texture);
@@ -62,7 +61,7 @@ void Sprite::loadTexture(const std::string& imagePath) {
 
     width = surface->w;
     height = surface->h;
-    std::cout << "Image loaded successfully. Dimensions: " << width << "x" << height << std::endl;
+   // std::cout << "Image loaded successfully. Dimensions: " << width << "x" << height << std::endl;
 
     texture = SDL_CreateTextureFromSurface(renderer, surface);
     if (!texture) {
