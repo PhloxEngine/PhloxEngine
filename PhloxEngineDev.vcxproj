@@ -88,19 +88,20 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dependencies\discord-rpc\include;$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\windows\SDL2\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)dependencies\windows\SDL2\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x86\*.dll" "$(TargetDir)" /Y</Command>
+      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x86\*.dll" "$(TargetDir)" /Y
+XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x86\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy SDL2 dlls.</Message>
+      <Message>Copy dlls.</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,21 +112,22 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dependencies\discord-rpc\include;$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\windows\SDL2\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)dependencies\windows\SDL2\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x86\*.dll" "$(TargetDir)" /Y</Command>
+      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x86\*.dll" "$(TargetDir)" /Y
+XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x86\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy SDL2 dlls.</Message>
+      <Message>Copy dlls.</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -134,20 +136,21 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dependencies\discord-rpc\include;$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\windows\SDL2\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x64;$(ProjectDir)dependencies\windows\SDL2\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x64\*.dll" "$(TargetDir)" /Y</Command>
+      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x64\*.dll" "$(TargetDir)" /Y
+XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x64\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy SDL2 DLLS</Message>
+      <Message>Copy DLLS</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -158,7 +161,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dependencies\discord-rpc\include;$(ProjectDir)dependencies;$(ProjectDir)dependencies\windows\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -166,23 +169,26 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\windows\SDL2\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x64;$(ProjectDir)dependencies\windows\SDL2\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x64\*.dll" "$(TargetDir)" /Y</Command>
+      <Command>XCOPY "$(ProjectDir)dependencies\windows\SDL2\lib\x64\*.dll" "$(TargetDir)" /Y
+XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x64\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy SDL2 DLLS</Message>
+      <Message>Copy DLLS</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Engine\Application.cpp" />
+    <ClCompile Include="source\Engine\Discord.cpp" />
     <ClCompile Include="source\Engine\Main.cpp" />
     <ClCompile Include="source\Engine\PhloxGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\Application.h" />
+    <ClInclude Include="source\Engine\Discord.h" />
     <ClInclude Include="source\Engine\PhloxGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

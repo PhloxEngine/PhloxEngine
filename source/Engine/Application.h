@@ -19,6 +19,7 @@ public:
 
 private:
     void UpdateWindowTitle();
+    void UpdateDiscordPresence();
 
     SDL_Window* m_window;
     SDL_Renderer* m_renderer;

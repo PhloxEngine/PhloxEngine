@@ -1,15 +1,19 @@
 #include "Application.h"
 #include <SDL.h>
 #include <string>
+#include <chrono>
+#include "Discord.h"
 
 Application::Application() 
     : m_window(nullptr)
     , m_renderer(nullptr)
     , m_isRunning(false)
 {
+    Discord::GetInstance().Initialize();
 }
 
 Application::~Application() {
+    Discord_Shutdown();
     Cleanup();
 }
 
@@ -83,10 +87,29 @@ bool Application::LoadGame(const char* phloxFilePath) {
         return false;
     }
     UpdateWindowTitle();
+    UpdateDiscordPresence();
     return true;
 }
 
 void Application::UpdateWindowTitle() {
     std::string title = "Phlox Engine - " + m_game.GetGameInfo().title;
     SDL_SetWindowTitle(m_window, title.c_str());
+}
+
+void Application::UpdateDiscordPresence() {
+    DiscordRichPresence discordPresence;
+    memset(&discordPresence, 0, sizeof(discordPresence));
+    
+    discordPresence.state = "In Game";
+    
+    std::string details = m_game.GetGameInfo().title + " by " + m_game.GetGameInfo().author;
+    discordPresence.details = details.c_str();
+    
+    auto now = std::chrono::system_clock::now();
+    discordPresence.startTimestamp = std::chrono::duration_cast<std::chrono::seconds>(
+        now.time_since_epoch()
+    ).count();
+    
+    discordPresence.largeImageKey = "icon";
+    Discord_UpdatePresence(&discordPresence);
 }
