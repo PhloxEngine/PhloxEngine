@@ -1,0 +1,1 @@
+Make sure to copy PhloxCompiler.exe to the root of the project lol

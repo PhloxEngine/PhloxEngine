@@ -27,9 +27,15 @@
     <ClCompile Include="source\Engine\Application.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="source\Engine\PhloxGame.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\Application.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Engine\PhloxGame.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>

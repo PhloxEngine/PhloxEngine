@@ -24,3 +24,4 @@ Release/PhloxEngine.vcxproj.FileListAbsolute.txt
 *.ilk
 *.txt
 /Debug
+*.phlox

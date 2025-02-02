@@ -7,6 +7,8 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
+    app.LoadGame("Data.phlox");
+
     while (app.IsRunning()) {
         app.HandleEvents();
         app.Update();

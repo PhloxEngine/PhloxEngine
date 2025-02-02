@@ -1,5 +1,6 @@
 #include "Application.h"
 #include <SDL.h>
+#include <string>
 
 Application::Application() 
     : m_window(nullptr)
@@ -74,4 +75,18 @@ void Application::Cleanup() {
 
 bool Application::IsRunning() const {
     return m_isRunning;
+}
+
+bool Application::LoadGame(const char* phloxFilePath) {
+    if (!m_game.LoadGame(phloxFilePath)) {
+        SDL_Log("Failed to load game: %s", phloxFilePath);
+        return false;
+    }
+    UpdateWindowTitle();
+    return true;
+}
+
+void Application::UpdateWindowTitle() {
+    std::string title = "Phlox Engine - " + m_game.GetGameInfo().title;
+    SDL_SetWindowTitle(m_window, title.c_str());
 }
