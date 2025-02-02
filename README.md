@@ -1,30 +1,15 @@
 # Phlox Engine
 
-A C++ game engine built with OpenGL and GLFW. Attempting to keep it as similar to HaxeFlixel as possible.
+My attempt at making a game engine.
 
-This is all being done by one person so development may be slow.
+## Documentation
 
-The required libraries are already included because I don't wanna keep redownloading them whenever I decide to reinstall Windows.
+## Building
 
-# Building
+### Windows
 
-See [BUILDING.md](BUILDING.md) for more information.
+Double click PhloxEngineDev.sln to open the project in Visual Studio and build/debug it.
 
-## TODO
-- [x] Sprites
-- [x] Text
-- [x] Spritesheets (png and xml (Sparrow V2))
-- [x] States and Substates
-- [x] Input
-- [x] Sound
-- [ ] Groups
+## Dependencies
 
-# Projects made with Phlox Engine:
-
-* [Flappy Bird PE](https://github.com/yophlox/FlappyBird-PE/tree/main) - A simple flappy bird port/clone. - By YoPhlox
-
-# REQUIREMENTS
-
-- [stb_image](https://github.com/nothings/stb)
-- [glut](https://www.opengl.org/resources/libraries/glut/)
-- [FreeType](https://freetype.org/)
+- [SDL2](https://github.com/libsdl-org/SDL/releases/tag/release-2.30.12)
