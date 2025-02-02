@@ -116,6 +116,34 @@ bool PhloxGame::ReadGameInfo(const char* data, size_t size) {
                 m_gameInfo.window.height = window["height"].get<int>();
             }
         }
+
+        if (j.contains("discord")) {
+            auto& discord = j["discord"];
+            if (discord.contains("enabled")) {
+                m_gameInfo.discord.enabled = discord["enabled"].get<bool>();
+            }
+            if (discord.contains("applicationId")) {
+                m_gameInfo.discord.applicationId = discord["applicationId"].get<std::string>();
+            }
+            if (discord.contains("state")) {
+                m_gameInfo.discord.state = discord["state"].get<std::string>();
+            }
+            if (discord.contains("details")) {
+                m_gameInfo.discord.details = discord["details"].get<std::string>();
+            }
+            if (discord.contains("largeImageKey")) {
+                m_gameInfo.discord.largeImageKey = discord["largeImageKey"].get<std::string>();
+            }
+            if (discord.contains("largeImageText")) {
+                m_gameInfo.discord.largeImageText = discord["largeImageText"].get<std::string>();
+            }
+            if (discord.contains("smallImageKey")) {
+                m_gameInfo.discord.smallImageKey = discord["smallImageKey"].get<std::string>();
+            }
+            if (discord.contains("smallImageText")) {
+                m_gameInfo.discord.smallImageText = discord["smallImageText"].get<std::string>();
+            }
+        }
         return true;
     }
     catch (const std::exception& e) {

@@ -8,12 +8,24 @@ struct WindowConfig {
     int height = 600;
 };
 
+struct DiscordConfig {
+    std::string applicationId = "1155959383625318492";
+    std::string state = "";
+    std::string details = "";
+    std::string largeImageKey = "icon";
+    std::string largeImageText = "Phlox Engine by YoPhlox";
+    std::string smallImageKey = "";
+    std::string smallImageText = "";
+    bool enabled = true;
+};
+
 struct GameInfo {
     std::string title;
     std::string version;
     std::string author;
     WindowConfig window;
     std::string initialState;
+    DiscordConfig discord;
 };
 
 class PhloxGame {

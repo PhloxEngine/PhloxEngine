@@ -121,19 +121,6 @@ void Application::UpdateWindowTitle() {
 }
 
 void Application::UpdateDiscordPresence() {
-    DiscordRichPresence discordPresence;
-    memset(&discordPresence, 0, sizeof(discordPresence));
-    
-    discordPresence.state = "In Game";
-    
-    std::string details = m_game.GetGameInfo().title + " by " + m_game.GetGameInfo().author;
-    discordPresence.details = details.c_str();
-    
-    auto now = std::chrono::system_clock::now();
-    discordPresence.startTimestamp = std::chrono::duration_cast<std::chrono::seconds>(
-        now.time_since_epoch()
-    ).count();
-    
-    discordPresence.largeImageKey = "icon";
-    Discord_UpdatePresence(&discordPresence);
+    Discord::GetInstance().Initialize(m_game.GetGameInfo());
+    Discord::GetInstance().Update(m_game.GetGameInfo());
 }

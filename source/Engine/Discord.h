@@ -2,6 +2,7 @@
 #include <discord_register.h> 
 #include <discord_rpc.h> 
 #include <Windows.h> 
+#include "PhloxGame.h"
 
 class Discord {
 public:
@@ -10,8 +11,13 @@ public:
 		return instance;
 	}
 
-	void Initialize();
-	void Update();
+	void Initialize() {
+		GameInfo defaultInfo;
+		Initialize(defaultInfo);
+	}
+
+	void Initialize(const GameInfo& gameInfo);
+	void Update(const GameInfo& gameInfo);
 
 private:
 	Discord() {} 
