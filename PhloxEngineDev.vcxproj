@@ -185,11 +185,15 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x64\*.dll" "$(TargetDir)" /Y</
     <ClCompile Include="source\Engine\Discord.cpp" />
     <ClCompile Include="source\Engine\Main.cpp" />
     <ClCompile Include="source\Engine\PhloxGame.cpp" />
+    <ClCompile Include="source\Engine\ScriptParser.cpp" />
+    <ClCompile Include="source\Engine\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\Application.h" />
     <ClInclude Include="source\Engine\Discord.h" />
     <ClInclude Include="source\Engine\PhloxGame.h" />
+    <ClInclude Include="source\Engine\ScriptParser.h" />
+    <ClInclude Include="source\Engine\StateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

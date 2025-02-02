@@ -1,4 +1,6 @@
 #include "Application.h"
+#include "ScriptParser.h"
+#include "StateManager.h"
 
 int main(int argc, char* argv[]) {
     Application app;

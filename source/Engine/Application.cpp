@@ -4,11 +4,14 @@
 #include <chrono>
 #include "Discord.h"
 
+Application* Application::s_instance = nullptr;
+
 Application::Application() 
     : m_window(nullptr)
     , m_renderer(nullptr)
     , m_isRunning(false)
 {
+    s_instance = this;
     Discord::GetInstance().Initialize();
 }
 
@@ -28,7 +31,7 @@ bool Application::Initialize() {
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         800,
-        600,
+        600, 
         SDL_WINDOW_SHOWN
     );
 
@@ -56,11 +59,15 @@ void Application::HandleEvents() {
     }
 }
 
-void Application::Update() {}
+void Application::Update() {
+    m_game.Update();
+}
 
 void Application::Render() {
     SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
     SDL_RenderClear(m_renderer);
+
+    m_game.Render();
 
     SDL_RenderPresent(m_renderer);
 }
@@ -86,6 +93,11 @@ bool Application::LoadGame(const char* phloxFilePath) {
         SDL_Log("Failed to load game: %s", phloxFilePath);
         return false;
     }
+    
+    const WindowConfig& windowConfig = m_game.GetGameInfo().window;
+    SDL_SetWindowSize(m_window, windowConfig.width, windowConfig.height);
+    SDL_SetWindowPosition(m_window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+    
     UpdateWindowTitle();
     UpdateDiscordPresence();
     return true;

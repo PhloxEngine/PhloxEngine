@@ -1,0 +1,21 @@
+class PlayState extends State {
+    // Constructor function
+    function create() {
+        trace("PlayState created!\n");
+    }
+
+    /* Update function
+       Called every frame */
+    function update() {
+        //trace("PlayState updated!\n");
+    }
+
+    // Render function
+    function render() {
+        //trace("PlayState rendered!\n");
+    }
+
+    function destroy() {
+        //trace("PlayState destroyed!\n");
+    }
+} 

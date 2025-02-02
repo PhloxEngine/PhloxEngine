@@ -25,3 +25,4 @@ Release/PhloxEngine.vcxproj.FileListAbsolute.txt
 *.txt
 /Debug
 *.phlox
+/Lettuce

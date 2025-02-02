@@ -1,1 +1,1 @@
-Make sure to copy PhloxCompiler.exe to the root of the project lol
+Make sure to copy Lettuce.exe to the root of the project lol or add it to your PATH.
