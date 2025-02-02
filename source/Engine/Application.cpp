@@ -1,21 +1,17 @@
 #include "Application.h"
-#include <SDL.h>
 #include <string>
 #include <chrono>
 #include "Discord.h"
-#include <SDL_image.h>
-#include "ScriptableSprite.h"
+#include <iostream>
 
 Application* Application::s_instance = nullptr;
 
 Application::Application() 
-    : m_window(nullptr)
-    , m_renderer(nullptr)
+    : m_windowId(-1)
     , m_isRunning(false)
 {
     s_instance = this;
     Discord::GetInstance().Initialize();
-    IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 }
 
 Application::~Application() {
@@ -23,43 +19,60 @@ Application::~Application() {
     Cleanup();
 }
 
-bool Application::Initialize() {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        SDL_Log("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return false;
-    }
-
-    m_window = SDL_CreateWindow(
-        "Phlox Engine - No Game Loaded",
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
-        800,
-        600, 
-        SDL_WINDOW_SHOWN
-    );
-
-    if (!m_window) {
-        SDL_Log("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        return false;
-    }
-
-    m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
-    if (!m_renderer) {
-        SDL_Log("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
-        return false;
-    }
-
+bool Application::Initialize(int argc, char* argv[]) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+    glutInitWindowPosition(100, 100);
+    glutInitWindowSize(800, 600);
+    
+    m_windowId = glutCreateWindow("Phlox Engine - No Game Loaded");
+    
+    glutDisplayFunc(DisplayCallback);
+    glutIdleFunc(IdleCallback);
+    glutReshapeFunc(ReshapeCallback);
+    glutKeyboardFunc(KeyboardCallback);
+    glutCloseFunc(CloseCallback);
+    
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glEnable(GL_DEPTH_TEST);
+    
     m_isRunning = true;
-    ScriptableSprite::RegisterScriptApi();
     return true;
 }
 
-void Application::HandleEvents() {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
-            m_isRunning = false;
+void Application::DisplayCallback() {
+    if (s_instance) {
+        s_instance->Render();
+    }
+}
+
+void Application::IdleCallback() {
+    if (s_instance) {
+        s_instance->Update();
+        glutPostRedisplay();
+    }
+}
+
+void Application::ReshapeCallback(int width, int height) {
+    glViewport(0, 0, width, height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0, width, height, 0);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void Application::KeyboardCallback(unsigned char key, int x, int y) {
+    if (key == 27) { 
+        if (s_instance) {
+            s_instance->m_isRunning = false;
+            glutLeaveMainLoop();
         }
+    }
+}
+
+void Application::CloseCallback() {
+    if (s_instance) {
+        s_instance->m_isRunning = false;
     }
 }
 
@@ -68,24 +81,16 @@ void Application::Update() {
 }
 
 void Application::Render() {
-    SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
-    SDL_RenderClear(m_renderer);
-
-    m_game.Render();
-
-    SDL_RenderPresent(m_renderer);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+        
+    glutSwapBuffers();
 }
 
 void Application::Cleanup() {
-    if (m_renderer) {
-        SDL_DestroyRenderer(m_renderer);
-        m_renderer = nullptr;
+    if (m_windowId != -1) {
+        glutDestroyWindow(m_windowId);
     }
-    if (m_window) {
-        SDL_DestroyWindow(m_window);
-        m_window = nullptr;
-    }
-    SDL_Quit();
 }
 
 bool Application::IsRunning() const {
@@ -94,13 +99,16 @@ bool Application::IsRunning() const {
 
 bool Application::LoadGame(const char* phloxFilePath) {
     if (!m_game.LoadGame(phloxFilePath)) {
-        SDL_Log("Failed to load game: %s", phloxFilePath);
+        std::cerr << "Failed to load game: " << phloxFilePath << std::endl;
         return false;
     }
     
     const WindowConfig& windowConfig = m_game.GetGameInfo().window;
-    SDL_SetWindowSize(m_window, windowConfig.width, windowConfig.height);
-    SDL_SetWindowPosition(m_window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+    glutReshapeWindow(windowConfig.width, windowConfig.height);
+    glutPositionWindow(
+        (glutGet(GLUT_SCREEN_WIDTH) - windowConfig.width) / 2,
+        (glutGet(GLUT_SCREEN_HEIGHT) - windowConfig.height) / 2
+    );
     
     UpdateWindowTitle();
     UpdateDiscordPresence();
@@ -109,7 +117,7 @@ bool Application::LoadGame(const char* phloxFilePath) {
 
 void Application::UpdateWindowTitle() {
     std::string title = "Phlox Engine - " + m_game.GetGameInfo().title;
-    SDL_SetWindowTitle(m_window, title.c_str());
+    glutSetWindowTitle(title.c_str());
 }
 
 void Application::UpdateDiscordPresence() {

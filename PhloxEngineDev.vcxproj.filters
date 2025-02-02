@@ -14,35 +14,23 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Source Files\Engine">
-      <UniqueIdentifier>{5f1bca74-6cc5-4efe-b6e2-984700590eed}</UniqueIdentifier>
+      <UniqueIdentifier>{53ffa9bf-d4f6-412c-936c-5bf73864f8d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Engine">
-      <UniqueIdentifier>{1d543732-492f-4e9c-823e-e84410e61268}</UniqueIdentifier>
+      <UniqueIdentifier>{d4cbbb96-6ade-4b71-80fc-2396e125cec1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\Engine\Main.cpp">
+    <ClCompile Include="source\Engine\Application.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="source\Engine\Application.cpp">
+    <ClCompile Include="source\Engine\Main.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Engine\PhloxGame.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Engine\Discord.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Engine\ScriptParser.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Engine\StateManager.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Engine\ScriptableSprite.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Engine\Sprite.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,18 +42,6 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="source\Engine\Discord.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Engine\ScriptParser.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Engine\StateManager.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Engine\ScriptableSprite.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Engine\Sprite.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>

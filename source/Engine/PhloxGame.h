@@ -1,11 +1,9 @@
 #pragma once
 #include <string>
-#include "StateManager.h"
-#include "ScriptParser.h"
 
 struct WindowConfig {
-    int width;
-    int height;
+    int width = 800;
+    int height = 600;
 };
 
 struct GameInfo {
@@ -13,7 +11,6 @@ struct GameInfo {
     std::string version;
     std::string author;
     WindowConfig window;
-    std::string initialState;
 };
 
 class PhloxGame {
@@ -22,12 +19,10 @@ public:
     ~PhloxGame();
 
     bool LoadGame(const char* phloxFilePath);
-    const GameInfo& GetGameInfo() const { return m_gameInfo; }
     void Update();
-    void Render();
+    const GameInfo& GetGameInfo() const { return m_gameInfo; }
 
 private:
     GameInfo m_gameInfo;
     bool ReadGameInfo(const char* data, size_t size);
-    bool LoadScripts(std::ifstream& file);
 }; 

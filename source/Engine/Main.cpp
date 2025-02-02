@@ -1,21 +1,15 @@
 #include "Application.h"
-#include "ScriptParser.h"
-#include "StateManager.h"
 
 int main(int argc, char* argv[]) {
     Application app;
     
-    if (!app.Initialize()) {
+    if (!app.Initialize(argc, argv)) {
         return -1;
     }
 
     app.LoadGame("Data.phlox");
 
-    while (app.IsRunning()) {
-        app.HandleEvents();
-        app.Update();
-        app.Render();
-    }
+    glutMainLoop();
 
     app.Cleanup();
     return 0;

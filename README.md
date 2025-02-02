@@ -12,5 +12,5 @@ Double click PhloxEngineDev.sln to open the project in Visual Studio and build/d
 
 ## Dependencies/Requirements
 
+- No external dependencies (freeglut, etc) are needed because they're included.
 - Lettuce - No link yet, still working on it.
-- [SDL2](https://github.com/libsdl-org/SDL/releases/tag/release-2.30.12)

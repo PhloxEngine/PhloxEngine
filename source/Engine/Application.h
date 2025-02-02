@@ -1,34 +1,34 @@
 #pragma once
 #include "PhloxGame.h"
-
-struct SDL_Window;
-struct SDL_Renderer;
+#include <GL/freeglut.h>
 
 class Application {
 public:
     Application();
     ~Application();
 
-    bool Initialize();
+    bool Initialize(int argc, char* argv[]);
     bool LoadGame(const char* phloxFilePath);
-    void HandleEvents();
     void Update();
     void Render();
     void Cleanup();
     bool IsRunning() const;
-    SDL_Renderer* GetRenderer() const { return m_renderer; }
     
     static Application& GetInstance() { return *s_instance; }
+    static void DisplayCallback();
+    static void IdleCallback();
+    static void ReshapeCallback(int width, int height);
+    static void KeyboardCallback(unsigned char key, int x, int y);
+    static void CloseCallback();
 
 private:
     void UpdateWindowTitle();
     void UpdateDiscordPresence();
 
-    SDL_Window* m_window;
-    SDL_Renderer* m_renderer;
+    int m_windowId;
     bool m_isRunning;
     PhloxGame m_game;
     
     static Application* s_instance;
-    friend class State; 
-}; 
+    friend class State;
+};
