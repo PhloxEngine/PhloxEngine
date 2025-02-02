@@ -98,7 +98,7 @@
       <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)lib\x86\*.dll"
+      <Command>XCOPY "$(ProjectDir)lib\x86\*.dll"  "$(TargetDir)" /Y
 XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x86\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -125,7 +125,7 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x86\*.dll" "$(TargetDir)" /Y</
       <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)lib\x86\*.dll"
+      <Command>XCOPY "$(ProjectDir)lib\x86\*.dll"  "$(TargetDir)" /Y
 XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x86\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -148,7 +148,7 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\\x86\*.dll" "$(TargetDir)" /Y</
       <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)lib\x64\*.dll"
+      <Command>XCOPY "$(ProjectDir)lib\x64\*.dll" "$(TargetDir)" /Y
 XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\x64\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -175,7 +175,7 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\x64\*.dll" "$(TargetDir)" /Y</C
       <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(ProjectDir)lib\x64\*.dll"
+      <Command>XCOPY "$(ProjectDir)lib\x64\*.dll" "$(TargetDir)" /Y
 XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\x64\*.dll" "$(TargetDir)" /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -187,11 +187,20 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\x64\*.dll" "$(TargetDir)" /Y</C
     <ClCompile Include="source\Engine\Discord.cpp" />
     <ClCompile Include="source\Engine\Main.cpp" />
     <ClCompile Include="source\Engine\PhloxGame.cpp" />
+    <ClCompile Include="source\Engine\ScriptHandler.cpp" />
+    <ClCompile Include="source\Engine\ScriptInterpreter.cpp" />
+    <ClCompile Include="source\Engine\State.cpp" />
+    <ClCompile Include="source\Engine\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\Application.h" />
+    <ClInclude Include="source\Engine\Debug.h" />
     <ClInclude Include="source\Engine\Discord.h" />
     <ClInclude Include="source\Engine\PhloxGame.h" />
+    <ClInclude Include="source\Engine\ScriptHandler.h" />
+    <ClInclude Include="source\Engine\ScriptInterpreter.h" />
+    <ClInclude Include="source\Engine\State.h" />
+    <ClInclude Include="source\Engine\StateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

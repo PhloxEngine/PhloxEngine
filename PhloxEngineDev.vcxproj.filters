@@ -33,6 +33,18 @@
     <ClCompile Include="source\Engine\Discord.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="source\Engine\StateManager.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Engine\State.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Engine\ScriptHandler.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Engine\ScriptInterpreter.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\Application.h">
@@ -42,6 +54,21 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="source\Engine\Discord.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Engine\Debug.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Engine\ScriptHandler.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Engine\State.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Engine\StateManager.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Engine\ScriptInterpreter.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
