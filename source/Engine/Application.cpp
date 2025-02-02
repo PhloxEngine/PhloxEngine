@@ -3,6 +3,8 @@
 #include <string>
 #include <chrono>
 #include "Discord.h"
+#include <SDL_image.h>
+#include "ScriptableSprite.h"
 
 Application* Application::s_instance = nullptr;
 
@@ -13,6 +15,7 @@ Application::Application()
 {
     s_instance = this;
     Discord::GetInstance().Initialize();
+    IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 }
 
 Application::~Application() {
@@ -47,6 +50,7 @@ bool Application::Initialize() {
     }
 
     m_isRunning = true;
+    ScriptableSprite::RegisterScriptApi();
     return true;
 }
 

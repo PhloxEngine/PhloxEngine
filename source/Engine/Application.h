@@ -16,6 +16,9 @@ public:
     void Render();
     void Cleanup();
     bool IsRunning() const;
+    SDL_Renderer* GetRenderer() const { return m_renderer; }
+    
+    static Application& GetInstance() { return *s_instance; }
 
 private:
     void UpdateWindowTitle();
@@ -26,7 +29,6 @@ private:
     bool m_isRunning;
     PhloxGame m_game;
     
-    static SDL_Renderer* GetRenderer() { return s_instance->m_renderer; }
     static Application* s_instance;
     friend class State; 
 }; 

@@ -6,6 +6,7 @@
 #include "StateManager.h"
 #include <cstring>
 #include <iostream>  
+#include "ScriptableSprite.h"
 
 PhloxGame::PhloxGame() {
     ScriptParser::GetInstance().RegisterNativeClass("State");
@@ -117,4 +118,5 @@ void PhloxGame::Update() {
 
 void PhloxGame::Render() {
     StateManager::GetInstance().Render();
+    ScriptableSprite::RenderAll();
 } 

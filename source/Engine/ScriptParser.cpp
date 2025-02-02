@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <regex>
+#include <vector>
+#include <any>
 
 ScriptParser& ScriptParser::GetInstance() {
     static ScriptParser instance;
@@ -85,9 +87,10 @@ void ScriptParser::ExecuteFunction(const std::string& className, const std::stri
     }
 
     std::string code = m_classes[className][functionName];
+    
     std::regex printfRegex("printf\\(\"([^\"]*)\"\\);");
     std::smatch match;
-    if (std::regex_search(code, match, printfRegex)) {
+    while (std::regex_search(code, match, printfRegex)) {
         std::string content = match[1];
         size_t pos = 0;
         while ((pos = content.find("\\n", pos)) != std::string::npos) {
@@ -95,6 +98,38 @@ void ScriptParser::ExecuteFunction(const std::string& className, const std::stri
             pos += 1;
         }
         std::cout << content;
+        code = match.suffix();
+    }
+
+    std::regex assignmentRegex(R"((\w+)\s*=\s*(\w+)\.(\w+)\((.*?)\);)");
+    std::regex methodCallRegex(R"((\w+)\.(\w+)\((.*?)\);)");
+    
+    while (std::regex_search(code, match, assignmentRegex)) {
+        std::string className = match[2];
+        std::string funcName = match[3];
+        std::string args = match[4];
+
+        if (m_scriptClasses.find(className) != m_scriptClasses.end()) {
+            auto& scriptClass = m_scriptClasses[className];
+            if (auto func = scriptClass.GetStaticFunction(funcName)) {
+                (*func)(args);
+            }
+        }
+        code = match.suffix();
+    }
+
+    while (std::regex_search(code, match, methodCallRegex)) {
+        std::string className = "Sprite";
+        std::string funcName = match[2];
+        std::string args = match[3];
+
+        if (m_scriptClasses.find(className) != m_scriptClasses.end()) {
+            auto& scriptClass = m_scriptClasses[className];
+            if (auto func = scriptClass.GetFunction(funcName)) {
+                (*func)(args);
+            }
+        }
+        code = match.suffix();
     }
 }
 
@@ -140,4 +175,9 @@ std::string ScriptParser::RemoveComments(const std::string& content) {
     }
     
     return result;
+}
+
+ScriptClass& ScriptParser::RegisterClass(const std::string& className) {
+    RegisterNativeClass(className);
+    return m_scriptClasses[className];
 } 
