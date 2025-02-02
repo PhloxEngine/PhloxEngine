@@ -2,6 +2,7 @@
 *.obj
 *.exe
 /.vs
+/.vscode
 /enc_temp_folder
 /external/libvorbis
 /external/ogg-master
