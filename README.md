@@ -14,3 +14,11 @@ Double click PhloxEngineDev.sln to open the project in Visual Studio and build/d
 
 - No external dependencies (freeglut, etc) are needed because they're included.
 - Lettuce - No link yet, still working on it.
+
+### Arch Linux
+
+```bash
+make deps
+make discord-rpc
+make
+```
