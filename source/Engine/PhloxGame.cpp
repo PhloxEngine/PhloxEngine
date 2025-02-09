@@ -4,6 +4,7 @@
 #include <vector>
 #include "json.hpp"
 #include "ScriptInterpreter.h"
+#include "AssetManager.h"
 
 PhloxGame::PhloxGame() {}
 
@@ -38,18 +39,31 @@ bool PhloxGame::LoadGame(const char* phloxFilePath) {
         std::vector<char> filename(filenameSize + 1, 0);
         file.read(filename.data(), filenameSize);
         
-        uint32_t scriptSize;
-        file.read(reinterpret_cast<char*>(&scriptSize), sizeof(scriptSize));
+        uint32_t dataSize;
+        file.read(reinterpret_cast<char*>(&dataSize), sizeof(dataSize));
         
-        std::vector<char> scriptData(scriptSize);
-        file.read(scriptData.data(), scriptSize);
+        std::vector<char> data(dataSize);
+        file.read(data.data(), dataSize);
 
-        std::string scriptName(filename.data());
-        if (!m_scriptHandler.LoadScript(scriptName, scriptData.data(), scriptSize)) {
-            Debug::Error("Failed to load script: " + scriptName);
-            return false;
+        std::string path(filename.data());
+        
+        if (path.substr(0, 7) == "source/") {
+            if (!m_scriptHandler.LoadScript(path, data.data(), dataSize)) {
+                Debug::Error("Failed to load script: " + path);
+                return false;
+            }
+            Debug::Trace("Loaded script: " + path);
         }
-        Debug::Trace("Loaded script: " + scriptName);
+        else if (path.substr(0, 7) == "assets/") {
+            if (!AssetManager::GetInstance().LoadAsset(path, data.data(), dataSize)) {
+                Debug::Error("Failed to load asset: " + path);
+                return false;
+            }
+            Debug::Trace("Loaded asset: " + path);
+        }
+        else {
+            Debug::Trace("Unknown file type: " + path);
+        }
     }
 
     if (m_gameInfo.initialState.empty()) {

@@ -34,7 +34,9 @@ bool Application::Initialize(int argc, char* argv[]) {
     glutCloseFunc(CloseCallback);
     
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_TEXTURE_2D);
     
     m_isRunning = true;
     return true;
@@ -57,8 +59,9 @@ void Application::ReshapeCallback(int width, int height) {
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0, width, height, 0);
+    glOrtho(0, width, height, 0, -1, 1);
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 void Application::KeyboardCallback(unsigned char key, int x, int y) {
@@ -83,6 +86,8 @@ void Application::Update() {
 void Application::Render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
+    
+    m_game.Render();
         
     glutSwapBuffers();
 }
