@@ -1,3 +1,0 @@
-[submodule "external/discord-rpc"]
-	path = external/discord-rpc
-	url = https://github.com/maybekoi/discord-rpc
