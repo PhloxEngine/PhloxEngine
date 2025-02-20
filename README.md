@@ -1,22 +1,19 @@
 # Phlox Engine
 
-The uhh main version of Phlox Engine!
+The rewrite of Phlox Engine!
 
-There is a rewrite in progress but it's on hold and it's NOWHERE near done!
+Powered by lua now! (Only because I got the idea at school and I thought that it would be cool lol)
 
-So use this version for now!!
+This is kinda just the regular/legacy version of Phlox Engine but lua and no hardcoding...
 
-# Phlox Engine
-
-A C++ game engine built with OpenGL and GLFW. Attempting to keep it as similar to HaxeFlixel as possible.
+I recommend NOT using this version yet.
 
 This is all being done by one person so development may be slow.
 
 The required libraries are already included because I don't wanna keep redownloading them whenever I decide to reinstall Windows.
 
-# Building
+## Building
 
-See [BUILDING.md](BUILDING.md) for more information.
 
 ## TODO
 - [x] Sprites
@@ -27,12 +24,13 @@ See [BUILDING.md](BUILDING.md) for more information.
 - [x] Sound
 - [ ] Groups
 
-# Projects made with Phlox Engine:
+## Projects made with Phlox Engine:
 
 * [Flappy Bird PE](https://github.com/yophlox/FlappyBird-PE/tree/main) - A simple flappy bird port/clone. - By YoPhlox
 
-# REQUIREMENTS
+## REQUIREMENTS - (Already included)
 
+- [luaJIT](https://luajit.org/download.html)
 - [stb_image](https://github.com/nothings/stb)
 - [glut](https://www.opengl.org/resources/libraries/glut/)
 - [FreeType](https://freetype.org/)
