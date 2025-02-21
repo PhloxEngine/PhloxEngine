@@ -28,9 +28,9 @@ The required libraries are already included because I don't wanna keep redownloa
 
 * [Flappy Bird PE](https://github.com/yophlox/FlappyBird-PE/tree/main) - A simple flappy bird port/clone. - By YoPhlox
 
-## REQUIREMENTS - (Already included)
+## REQUIREMENTS 
 
-- [luaJIT](https://luajit.org/download.html)
-- [stb_image](https://github.com/nothings/stb)
-- [glut](https://www.opengl.org/resources/libraries/glut/)
-- [FreeType](https://freetype.org/)
+- [luaJIT](https://luajit.org/download.html) - Included
+- [stb_image](https://github.com/nothings/stb) - Included
+- [glut](https://www.opengl.org/resources/libraries/glut/) - Included
+- [FreeType](https://freetype.org/) - VCPKG (vcpkg install freetype:x86-windows)

@@ -2,6 +2,7 @@
 #include <string>
 #include <filesystem>
 #include "AnimatedSprite.h"
+#include "Text.h"
 extern "C" {
     #include <lua.h>
     #include <lauxlib.h>
@@ -14,6 +15,7 @@ private:
     std::filesystem::path scriptPath;
     void registerSpriteMethods();
     void registerEngineFunctions();
+    void registerTextMethods();
 
 public:
     LuaManager();
