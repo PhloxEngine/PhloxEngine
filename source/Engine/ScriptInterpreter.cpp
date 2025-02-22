@@ -81,13 +81,13 @@ private:
                     // Extract x and y coordinates from the match
                     std::string params = match[1].str();
                     float x = 0, y = 0;
-                    sscanf(params.c_str(), "%f, %f", &x, &y);
+                    sscanf_s(params.c_str(), "%f, %f", &x, &y);
                     sprites["player"]->Render(x, y);
                 }
             }
             else if (std::regex_search(line, match, clearColorRegex)) {
                 float r, g, b, a;
-                sscanf(match[1].str().c_str(), "%f, %f, %f, %f", &r, &g, &b, &a);
+                sscanf_s(match[1].str().c_str(), "%f, %f, %f, %f", &r, &g, &b, &a);
                 glClearColor(r, g, b, a);
             }
             else if (std::regex_search(line, match, clearRegex)) {
