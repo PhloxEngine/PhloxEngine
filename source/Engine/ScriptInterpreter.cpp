@@ -44,9 +44,9 @@ private:
         std::string line;
         
         const char* tracePattern = "trace\\(\"([^\"]+)\"\\)";
-        const char* spritePattern = "m_playerSprite\\s*=\\s*new\\s+Sprite\\(\\)";
-        const char* loadPattern = "m_playerSprite->LoadFromFile\\(\"([^\"]+)\"\\)";
-        const char* renderPattern = "m_playerSprite->Render\\((.*?)\\)";
+        const char* spritePattern = "\\s*(\\w+)\\s*=\\s*new\\s+Sprite\\(\\)";
+        const char* loadPattern = "(\\w+)->LoadFromFile\\(\"([^\"]+)\"\\)";
+        const char* renderPattern = "(\\w+)->Render\\((.*?)\\)";
         const char* clearColorPattern = "glClearColor\\((.*?)\\)";
         const char* clearPattern = "glClear\\((.*?)\\)";
         
@@ -62,27 +62,29 @@ private:
             if (std::regex_search(line, match, traceRegex)) {
                 Debug::Trace(match[1].str());
             }
-            else if (std::regex_search(line, spriteRegex)) {
-                m_interpreter.GetSprites()["player"] = std::make_shared<Sprite>();
-                Debug::Trace("Created new sprite");
+            else if (std::regex_search(line, match, spriteRegex)) {
+                std::string spriteName = match[1].str();
+                m_interpreter.GetSprites()[spriteName] = std::make_shared<Sprite>();
+                Debug::Trace("Created new sprite: " + spriteName);
             }
             else if (std::regex_search(line, match, loadRegex)) {
+                std::string spriteName = match[1].str();
                 auto& sprites = m_interpreter.GetSprites();
-                if (sprites.find("player") != sprites.end()) {
-                    bool success = sprites["player"]->LoadFromFile(match[1].str());
+                if (sprites.find(spriteName) != sprites.end()) {
+                    bool success = sprites[spriteName]->LoadFromFile(match[2].str());
                     if (!success) {
-                        Debug::Error("Failed to load player sprite!");
+                        Debug::Error("Failed to load sprite: " + spriteName);
                     }
                 }
             }
             else if (std::regex_search(line, match, renderRegex)) {
+                std::string spriteName = match[1].str();
                 auto& sprites = m_interpreter.GetSprites();
-                if (sprites.find("player") != sprites.end()) {
-                    // Extract x and y coordinates from the match
-                    std::string params = match[1].str();
-                    float x = 0, y = 0;
-                    sscanf_s(params.c_str(), "%f, %f", &x, &y);
-                    sprites["player"]->Render(x, y);
+                if (sprites.find(spriteName) != sprites.end()) {
+                    std::string params = match[2].str();
+                    float x = 0, y = 0, scale = 1.0f;
+                    sscanf_s(params.c_str(), "%f, %f, %f", &x, &y, &scale);
+                    sprites[spriteName]->Render(x, y, scale);
                 }
             }
             else if (std::regex_search(line, match, clearColorRegex)) {

@@ -145,7 +145,7 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\x86\*.dll" "$(TargetDir)" /Y</C
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>freeglut.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x64;$(ProjectDir)lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>XCOPY "$(ProjectDir)lib\x64\*.dll" "$(TargetDir)" /Y /E /I
@@ -173,7 +173,7 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\x64\*.dll" "$(TargetDir)" /Y /E
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>freeglut.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x86;$(ProjectDir)lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)dependencies\discord-rpc\lib\x64;$(ProjectDir)lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>XCOPY "$(ProjectDir)lib\x64\*.dll" "$(TargetDir)" /Y /E /I
@@ -186,13 +186,16 @@ XCOPY "$(ProjectDir)dependencies\discord-rpc\dll\x64\*.dll" "$(TargetDir)" /Y /E
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Engine\Application.cpp" />
+    <ClCompile Include="source\Engine\AssetManager.cpp" />
     <ClCompile Include="source\Engine\Discord.cpp" />
     <ClCompile Include="source\Engine\Main.cpp" />
     <ClCompile Include="source\Engine\PhloxGame.cpp" />
     <ClCompile Include="source\Engine\ScriptHandler.cpp" />
     <ClCompile Include="source\Engine\ScriptInterpreter.cpp" />
+    <ClCompile Include="source\Engine\Sprite.cpp" />
     <ClCompile Include="source\Engine\State.cpp" />
     <ClCompile Include="source\Engine\StateManager.cpp" />
+    <ClCompile Include="source\Engine\stb_image_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\Application.h" />
