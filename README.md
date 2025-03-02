@@ -14,19 +14,14 @@ The required libraries are already included because I don't wanna keep redownloa
 
 ## Building
 
-
 ## TODO
 - [x] Sprites
 - [x] Text
 - [x] Spritesheets (png and xml (Sparrow V2))
 - [x] States and Substates
-- [x] Input
-- [x] Sound
+- [ ] Input
+- [ ] Sound
 - [ ] Groups
-
-## Projects made with Phlox Engine:
-
-* [Flappy Bird PE](https://github.com/yophlox/FlappyBird-PE/tree/main) - A simple flappy bird port/clone. - By YoPhlox
 
 ## REQUIREMENTS 
 
